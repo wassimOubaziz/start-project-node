@@ -3,9 +3,7 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-const signupRoute = require("./routes/signupRoute");
-const signInRoute = require("./routes/signInRoute");
-const signOutRoute = require("./routes/signOutRoute");
+const auth = require("./routes/authRoute");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,14 +22,11 @@ app.use(
 app.use(express.static("public"));
 app.use(express.json());
 
-//for sign up page
-app.use("/signup", signupRoute);
-
-//for login page
-app.use("/login", signInRoute);
+//for sign up and sign in page
+app.use("/api/auth", auth);
 
 //for sign out page
-app.use("/logout", protect, signOutRoute);
+app.use("/api/auth", protect, auth);
 
 //exporting app
 module.exports = app;
