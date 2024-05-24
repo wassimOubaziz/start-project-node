@@ -12,7 +12,7 @@ router.route("/:token").get(async (req, res) => {
       return res
         .status(400)
         .redirect(
-          "http://localhost:3000/sign-up/The%20Link%20is%20not%20available%20any%20more,%20Plz%20Regester%20again!"
+          "http://localhost:3000/sign-in/message='invalide token, plz register again'"
         );
     }
 
@@ -22,11 +22,7 @@ router.route("/:token").get(async (req, res) => {
     await user.save();
     res
       .status(200)
-      .redirect("http://localhost:3000/sign-in/You%20registered%20succesfully");
-    //   .json({
-    //     status: "success",
-    //     message: "You registered successfully, now you can login",
-    //   });
+      .redirect("http://localhost:3000/sign-in/message='you are valide now'");
   } catch (e) {
     res.status(404).json({ status: "faild", message: e.message });
   }

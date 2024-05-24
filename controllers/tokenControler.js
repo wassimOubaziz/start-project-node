@@ -66,29 +66,3 @@ exports.permition = (...roles) => {
     next();
   };
 };
-
-//check if the nurse have a job function
-exports.checkIfNurseHaveJob = async (req, res, next) => {
-  try {
-    const user = await User.findById(req.user._id);
-    if (user.hasJob) {
-      return next();
-    }
-    //show all the Announcements that offerd by the lab
-    // const announcements = await Announcement.find({})
-    //   .populate({ path: "owner", select: "name surname -_id" })
-    //   .populate({ path: "lab", select: "address name -_id" });
-    res.status(200).json({
-      status: "success",
-      data: {
-        announcements: [],
-        user,
-      },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: "fail",
-      message: err.message,
-    });
-  }
-};
