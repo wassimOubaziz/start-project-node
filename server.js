@@ -12,8 +12,7 @@ mongoose
   })
   .then(() => {
     console.log("connected to mongo");
+    const PORT = process.env.PORT || "3600";
+
+    app.listen(PORT, "0.0.0.0", () => console.log("http://localhost:" + PORT));
   });
-
-const PORT = process.env.PORT || "3600";
-
-app.listen(PORT, "0.0.0.0", () => console.log("http://localhost:" + PORT));
